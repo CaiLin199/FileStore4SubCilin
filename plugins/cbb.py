@@ -16,7 +16,7 @@ async def cb_handler(client: Bot, query: CallbackQuery):
                 [
                     [
                     InlineKeyboardButton("⚡️ Cʟᴏsᴇ", callback_data = "close"),
-                    InlineKeyboardButton('🍁 HᴇᴀᴠᴇɴʟʏSᴜʙs', url='https://t.me/BattleThroughTheHeavenSubs')
+                    InlineKeyboardButton('🍁 Cʜᴀɴɴᴇʟ', url='https://t.me/HeavenlySubs')
                     ]
                 ]
             )
