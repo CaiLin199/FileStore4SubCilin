@@ -5,6 +5,7 @@ from pyrogram.enums import ParseMode
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 from datetime import datetime
+import pytz
 
 from bot import Bot
 from config import ADMINS, FORCE_MSG, START_MSG, CUSTOM_CAPTION, DISABLE_CHANNEL_BUTTON, PROTECT_CONTENT
@@ -31,11 +32,15 @@ async def start_command(client: Client, message: Message):
     # If the user is existing, send a message with the time
     else:
         user_profile_link = f"https://t.me/{message.from_user.username}"
-        current_time = datetime.now().strftime("%I:%M %p")  # Format time as 7:00 AM
-        await client.send_message(
-            -1002197279542,
-            f"User {user_profile_link} has started the bot at {current_time}"
-        )
+        local_tz = pytz.timezone('Asia/Kolkata')
+
+# Get current time in local timezone
+current_time = datetime.now(pytz.utc).astimezone(local_tz).strftime("%I:%M %p")  # Format time as 7:00 AM
+
+await client.send_message(
+    -1002197279542,
+    f"User {user_profile_link} has started the bot at {current_time}"
+)
 
     # Handle the rest of the start command (replying with the start message)
     text = message.text
